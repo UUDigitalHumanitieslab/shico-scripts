@@ -15,7 +15,7 @@ MD5_XPATH = '../small/text()'
 
 def main(argv):
     """ Download all files from the Zenodo page in the first CLI argument.
-    
+
         Downloads to the current directory, wherever that is.
     """
     url = argv[1]
@@ -30,7 +30,7 @@ def main(argv):
         name = op.basename(urlparse(path).path)
         digest = anchor.xpath(MD5_XPATH)[0].split(':')[1].strip()
         checksum = md5()
-        response = requests.get(url, timeout=5, stream=True)
+        response = requests.get(full_url, timeout=5, stream=True)
         status = response.status_code
         if status != 200:
             print('{} failed with code {}.'.format(full_url, status))
